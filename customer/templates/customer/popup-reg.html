@@ -1,0 +1,35 @@
+{% load static %}
+<div class="reg-popup popup-box">
+    <div class="close">
+        <span></span>
+        <span></span>
+    </div>
+    <div class="popup-content">
+        <h3>Sign up</h3>
+        <form method="post" action="{% url 'sign_up' %}">
+            {% csrf_token %}
+            <input type="hidden" name="form" value="reg">
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <label class="input">
+                <span>Name<span>*</span></span>
+                <input type="text" name="login" required value="">
+            </label>
+            <label class="input">
+                <span>Email<span>*</span></span>
+                <input type="Email" name="email" autocomplete="email" required value="">
+            </label>
+            <label class="input input-half">
+                <span>Password<span>*</span></span>
+                <input type="password" name="password" required id="reg-pw">
+            </label>
+            <label class="input input-half">
+                <span>Confirm password<span>*</span></span>
+                <input type="password" name="againpassword" id="reg-pw-confirm" required>
+            </label>
+            <button type="submit">Sign up</button>
+        </form>
+        <div class="form-end">
+            Already have an account? <span class="log-tg">Log in</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+{% block content %}
+<section class="page-content account-page">
+    <div class="direction">
+        <a class="direction-home">Home</a> <span>/</span> <a class="direction-here">Personal account</a>
+    </div>
+
+    <div class="tab-links tab-slider swiper-container swiper-no-swiping">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide tab-link {% if active_tab == 'tab1' %}active{% endif %}" data-tab="tab1">Personal details</div>
+            <div class="swiper-slide tab-link {% if active_tab == 'tab2' %}active{% endif %}" data-tab="tab2">Delivery address</div>
+            <div class="swiper-slide tab-link {% if active_tab == 'tab3' %}active{% endif %}" data-tab="tab3">Favourites</div>
+            <div class="swiper-slide tab-link {% if active_tab == 'tab4' %}active{% endif %}" data-tab="tab4">Order history</div>
+        </div>
+    </div>
+
+    <div class="tabs">
+        
+        <div class="tab-content {% if active_tab == 'tab1' %}active{% endif %}" id="tab1">
+            <div class="content">
+                <div class="info-box personal">
+                    <h3>Personal Information</h3>
+                    <form class="common" name="profile" method="post">
+                        <input type="hidden" name="form" value="profile">
+                        <label class="input">
+                            <span class="name">Name<span>*</span></span>
+                            <input type="text" required name="acName" value="{{ user.customer.name }}">
+                        </label>
+                        <label class="input">
+                            <span class="name">Phone<span>*</span></span>
+                            <input type="tel" id="ac-tel" required name="acTel" value="{{ user.customer.phone }}">
+                        </label>
+                        <label class="input">
+                            <span class="name">Email<span>*</span></span>
+                            <input type="email" required name="acEmail" value="{{ user.customer.email }}">
+                        </label>
+                            <div class="btns">
+                                <button type="submit" class="save">Save</button>
+                            </div>
+                    </form>
+                </div>
+
+                <div class="info-box security">
+                    <h3>Safety</h3>
+                    <div class="desc">You can change the password at any time. To do this, you need to enter the old password in the first field and the new one in the second.</div>
+                    <div class="show-form">Change password</div>
+                    <form class="common" name="password" fmethod="post" style="display: none;">
+                        <input type="hidden" name="form" value="password">
+                        <label class="input">
+                            <span class="name">Current password<span>*</span></span>
+                            <input type="password" name="acPwOld" value="">
+                            <span class="lost-pw">Lost password?</span>
+                        </label>
+                        <label class="input">
+                            <span class="name">New password<span>*</span></span>
+                            <input type="password" id="ac-new" name="acPw">
+                        </label>
+                        <label class="input">
+                            <span class="name">Confirm the new password<span>*</span></span>
+                            <input type="password" name="acPwConfirm">
+                        </label>
+                        <div class="btns">
+                            <div class="cancel hide-form">Cancel</div>
+                            <button type="submit" class="save">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content {% if active_tab == 'tab2' %}active{% endif %}" id="tab2">
+            <div class="content">
+                <div class="info-box delivery-info">
+                    <h3>Delivery address</h3>
+                    <form class="common" name="address" method="post">
+                        <input type="hidden" name="form" value="address">
+                        <label class="input input-half">
+                            <span>Address<span>*</span></span>
+                            <input type="text" name="adr1" value="" required>
+                        </label>
+                        <div class="btns">
+                            <button type="submit" class="save">Save address</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content {% if active_tab == 'tab3' %}active{% endif %}" id="tab3">
+            <div class="content">
+                <div class="cat-wrap">
+                    <div class="empty">
+                        <img src="{% static 'images/empty.svg' %}">
+                        <div class="text">You haven`t added anything to favourites yet</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content {% if active_tab == 'tab4' %}active{% endif %}" id="tab4">
+            <div class="content">
+                <div class="history"></div>
+                <div class="empty">
+                    <img src="{% static 'images/empty-order.svg' %}">
+                    <div class="text">You have not ordered anything yet, and this needs to change. Go to the category you are interested in and order the most delicious</div>
+                    <div class="links">
+                        <a href="#">Rolls</a>
+                        <a href="#">Sushi</a>
+                        <a href="#">Sets</a>
+                        <a href="#">Appetizers</a>
+                        <a href="#">Drinks</a>
+                        <a href="#">Sauces</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}
+</section>

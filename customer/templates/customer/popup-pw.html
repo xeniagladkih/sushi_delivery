@@ -1,0 +1,20 @@
+{% load static %}
+<div class="pw-popup popup-box">
+    <div class="close">
+        <span></span>
+        <span></span>
+    </div>
+    <div class="popup-content">
+        <h3>Password recovery</h3>
+        <div class="text">To recover your password, enter your email address</div>
+        <form method="post" action="{% url 'reset-pw' %}">
+            {% csrf_token %}
+            <input type="hidden" name="form" value="recov">
+            <label class="input">
+                <span>Email<span>*</span></span>
+                <input type="Email" name="email" autocomplete="email" required>
+            </label>
+            <button type="submit" class="login-btn">Recover</button>
+        </form>
+    </div>
+</div>

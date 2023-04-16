@@ -1,0 +1,28 @@
+{% load static %}
+<div class="login-popup popup-box">
+    <div class="close">
+        <span></span>
+        <span></span>
+    </div>
+    <div class="popup-content">
+        <h3>Log in</h3>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="hidden" name="form" value="login">
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <label class="input">
+                <span>Email<span>*</span></span>
+                <input type="Email" name="email" autocomplete="email" required>
+            </label>
+            <label class="input">
+                <span>Password<span>*</span></span>
+                <input type="password" name="password" required>
+            </label>
+            <span class="lost-pw">Lost password?</span>
+            <button type="submit" class="login-btn">Log in</button>
+        </form>
+        <div class="form-end">
+            Don`t have an account? <span class="reg-tg">Sign up</span>
+        </div>
+    </div>
+</div>
